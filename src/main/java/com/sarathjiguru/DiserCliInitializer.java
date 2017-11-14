@@ -15,7 +15,7 @@ import io.netty.handler.codec.string.StringEncoder;
  * Created by Dean on 2014/6/25.
  */
 @ChannelHandler.Sharable
-public class EchoClientInitializer extends ChannelInitializer<SocketChannel> {
+public class DiserCliInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
@@ -23,7 +23,7 @@ public class EchoClientInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
         pipeline.addLast(new StringDecoder());
         pipeline.addLast(new StringEncoder());
-        pipeline.addLast(new EchoClientHandler());
+        pipeline.addLast(new ClientHandler());
 
     }
 }
