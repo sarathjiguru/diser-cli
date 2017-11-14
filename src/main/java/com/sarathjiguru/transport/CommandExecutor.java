@@ -1,4 +1,4 @@
-package com.sarathjiguru;
+package com.sarathjiguru.transport;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -51,7 +51,7 @@ public class CommandExecutor {
     }
 
     public void disconnect() throws InterruptedException {
-        if(channel.isOpen()){
+        if (channel.isOpen()) {
             channel.close();
         }
         group.shutdownGracefully();

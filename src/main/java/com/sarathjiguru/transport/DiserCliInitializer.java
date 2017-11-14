@@ -1,6 +1,7 @@
-package com.sarathjiguru;
+package com.sarathjiguru.transport;
 
 
+import com.sarathjiguru.transport.ClientHandler;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
