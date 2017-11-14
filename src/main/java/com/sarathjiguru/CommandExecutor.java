@@ -11,19 +11,19 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by sarath on 12/11/17.
  */
-public class ClientConnect {
+public class CommandExecutor {
     private static ChannelFuture f;
     private EventLoopGroup group;
     private Channel channel;
-    private EchoClientInitializer echoClientInitializer;
+    private DiserCliInitializer diserCliInitializer;
     private Bootstrap b;
 
     public Object write(String command) throws InterruptedException, ExecutionException {
         connect();
         channel.writeAndFlush(command + "\r\n");
         ChannelPipeline pipeline = channel.pipeline();
-        EchoClientHandler echoClientHandler = (EchoClientHandler) pipeline.last();
-        Object object = echoClientHandler.getObject();
+        ClientHandler clientHandler = (ClientHandler) pipeline.last();
+        Object object = clientHandler.getObject();
         channel.close();
         channel.disconnect();
         return object;
@@ -41,12 +41,12 @@ public class ClientConnect {
                         public void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline p = ch.pipeline();
                             //p.addLast(new LoggingHandler(LogLevel.INFO));
-                            p.addLast(new EchoClientInitializer());
+                            p.addLast(new DiserCliInitializer());
                         }
                     });
         }
         // Start the client.
-        f = b.connect(EchoClient.HOST, EchoClient.PORT).sync();
+        f = b.connect(DiserClient.HOST, DiserClient.PORT).sync();
         channel = f.channel();
     }
 
