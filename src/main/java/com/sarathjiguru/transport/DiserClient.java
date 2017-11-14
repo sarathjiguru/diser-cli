@@ -30,10 +30,10 @@ public final class DiserClient {
 
 
     public static void main(String[] args) throws Exception {
-        CommandExecutor cc = new CommandExecutor();
+        DiserTransportCli cc = new DiserTransportCli();
         for (int i = 0; i < 1000; i++) {
             System.out.println(i);
-            System.out.println("Command set status:" + cc.write("SET$a$" + i));
+            System.out.println("Command set status:" + cc.runCommand("SET$a$" + i));
         }
         cc.disconnect();
 

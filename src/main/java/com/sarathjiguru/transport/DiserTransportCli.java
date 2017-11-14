@@ -11,14 +11,18 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by sarath on 12/11/17.
  */
-public class CommandExecutor {
-    private static ChannelFuture f;
-    private EventLoopGroup group;
-    private Channel channel;
-    private DiserCliInitializer diserCliInitializer;
-    private Bootstrap b;
+public class DiserTransportCli {
+    private static EventLoopGroup group;
+    private static Channel channel;
+    private static Bootstrap b;
 
-    public Object write(String command) throws InterruptedException, ExecutionException {
+    private static DiserTransportCli instance = null;
+
+    protected DiserTransportCli() {
+
+    }
+
+    public Object runCommand(String command) throws InterruptedException, ExecutionException {
         connect();
         channel.writeAndFlush(command + "\r\n");
         ChannelPipeline pipeline = channel.pipeline();
@@ -29,7 +33,7 @@ public class CommandExecutor {
         return object;
     }
 
-    private void connect() throws InterruptedException {
+    public static DiserTransportCli connect(String host, int port) throws InterruptedException {
         if (group == null) {
             group = new NioEventLoopGroup();
             b = new Bootstrap();
@@ -46,9 +50,15 @@ public class CommandExecutor {
                     });
         }
         // Start the client.
-        f = b.connect(DiserClient.HOST, DiserClient.PORT).sync();
+        ChannelFuture f = b.connect(host, port).sync();
         channel = f.channel();
+        return new DiserTransportCli();
     }
+
+    private DiserTransportCli connect() throws InterruptedException {
+        return connect(DiserClient.HOST, DiserClient.PORT);
+    }
+
 
     public void disconnect() throws InterruptedException {
         if (channel.isOpen()) {
