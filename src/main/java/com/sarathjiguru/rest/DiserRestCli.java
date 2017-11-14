@@ -4,6 +4,7 @@ package com.sarathjiguru.rest;
 import com.codahale.metrics.health.HealthCheck;
 import com.sarathjiguru.rest.config.DiserRestCliConfig;
 import com.sarathjiguru.rest.healthcheck.DiserHealthCheck;
+import com.sarathjiguru.rest.resources.GetCommand;
 import com.sarathjiguru.rest.resources.SetCommand;
 import com.sarathjiguru.transport.DiserTransportCli;
 import io.dropwizard.Application;
@@ -51,6 +52,7 @@ public class DiserRestCli extends Application<DiserRestCliConfig> {
 
         SetCommand setCommand = new SetCommand();
         environment.jersey().register(setCommand);
+        environment.jersey().register(new GetCommand());
 
     }
 

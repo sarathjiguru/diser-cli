@@ -20,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 
 public class SetCommand {
 
-    public static final String SPACE = "_space";
     private final Logger logger;
 
     public SetCommand() {
@@ -33,7 +32,7 @@ public class SetCommand {
      * Service to upload parking spaces to the spaces DB.
      */
     @POST
-    @Path("/set/key")
+    @Path("/key")
     public Object set(SimpleTuple tuple)
             throws ExecutionException, InterruptedException, JsonProcessingException {
         Object result = DiserRestCli.nativeDiser.runCommand("SET$" + tuple.getKey() + "$" + tuple.getValue());
