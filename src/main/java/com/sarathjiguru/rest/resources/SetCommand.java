@@ -1,10 +1,8 @@
 package com.sarathjiguru.rest.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sarathjiguru.rest.DiserRestCli;
 import com.sarathjiguru.rest.api.SimpleTuple;
-import com.sarathjiguru.rest.config.constants.PathConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
