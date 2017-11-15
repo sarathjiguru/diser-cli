@@ -1,5 +1,4 @@
 .gitignore
 .idea/
 disercli.iml
-pom.xml
 target/
