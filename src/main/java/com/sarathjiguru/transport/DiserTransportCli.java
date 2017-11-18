@@ -18,12 +18,11 @@ public class DiserTransportCli {
 
     private static DiserTransportCli instance = null;
 
-    protected DiserTransportCli() {
+    private DiserTransportCli() {
 
     }
 
     public Object runCommand(String command) throws InterruptedException, ExecutionException {
-        connect();
         channel.writeAndFlush(command + "\r\n");
         ChannelPipeline pipeline = channel.pipeline();
         ClientHandler clientHandler = (ClientHandler) pipeline.last();

@@ -52,12 +52,12 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     public void channelActive(ChannelHandlerContext context) {
-        System.out.println("welcome to diser native client");
+        //
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println(msg.toString());
+        //System.out.println(msg.toString());
         ctx.channel().close().addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future) {

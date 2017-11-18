@@ -30,8 +30,9 @@ public final class DiserClient {
 
 
     public static void main(String[] args) throws Exception {
-        DiserTransportCli cc = new DiserTransportCli();
+        DiserTransportCli cc=null;
         for (int i = 0; i < 1000; i++) {
+             cc = DiserTransportCli.connect(HOST, PORT);
             System.out.println(i);
             System.out.println("Command set status:" + cc.runCommand("SET$a$" + i));
         }
