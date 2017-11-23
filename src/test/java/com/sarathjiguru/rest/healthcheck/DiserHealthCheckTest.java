@@ -11,7 +11,8 @@ import static org.junit.Assert.*;
 public class DiserHealthCheckTest {
     @Test
     public void check() throws Exception {
-        DiserHealthCheck diserHealthCheck = new DiserHealthCheck(new DiserDB("diser://127.0.0.1:8007"));
+        DiserDB diserDB = new DiserDB("diser://127.0.0.1:8007");
+        DiserHealthCheck diserHealthCheck = new DiserHealthCheck(diserDB);
         System.out.println(diserHealthCheck.check().getMessage());
     }
 

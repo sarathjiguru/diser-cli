@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutionException;
 public class GetCommand {
 
     @GET
-    @Path("/key{" + PathConstants.KEY + "}")
+    @Path("/key/{" + PathConstants.KEY + "}")
     public Object get(@PathParam(PathConstants.KEY) String key) throws ExecutionException, InterruptedException {
         Object result = DiserRestCli.nativeDiser.runCommand("GET$" + key);
         return result;

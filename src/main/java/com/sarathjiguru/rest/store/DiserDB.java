@@ -8,6 +8,7 @@ import io.dropwizard.setup.Environment;
 
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 /**
  * <p/>
@@ -29,7 +30,7 @@ public class DiserDB {
     private final DiserTransportCli diserTCli;
 
     public DiserDB(String diserURL) throws InterruptedException {
-        this.diserTCli = DiserTransportCli.connect(DiserClient.HOST, DiserClient.PORT);
+        this.diserTCli = DiserTransportCli.connect(diserURL);
     }
 
     public DiserTransportCli diserCli(){

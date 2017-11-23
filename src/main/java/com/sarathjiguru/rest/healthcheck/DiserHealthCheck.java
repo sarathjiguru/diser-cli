@@ -23,7 +23,10 @@ public class DiserHealthCheck extends HealthCheck {
     @Override
     protected Result check() throws Exception {
         try {
-           // nativeClient.runCommand("@ping");
+            Object o = nativeClient.runCommand("@ping");
+            if(!o.toString().toLowerCase().contains("unsupported")){
+                throw new Exception();
+            }
         } catch (Exception e) {
             return Result.unhealthy(e);
         } finally {

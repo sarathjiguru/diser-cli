@@ -5,6 +5,8 @@ import com.sarathjiguru.rest.store.DiserDB;
 import io.dropwizard.Configuration;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * <p/>
  * DiserRestCli Configuration file. Contains objects for YAML config sections.

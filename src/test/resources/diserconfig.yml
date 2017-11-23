@@ -2,10 +2,10 @@ diser.store: "diserDB://127.0.01:8007/"
 server:
   applicationConnectors:
     - type: http
-      port: 7275
+      port: 8998
   adminConnectors:
     - type: http
-      port: 7276
+      port: 8999
 
 logging:
   level: INFO

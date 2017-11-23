@@ -54,15 +54,19 @@ public class DiserTransportCli {
         return new DiserTransportCli();
     }
 
-    private DiserTransportCli connect() throws InterruptedException {
-        return connect(DiserClient.HOST, DiserClient.PORT);
-    }
-
 
     public void disconnect() throws InterruptedException {
-        if (channel.isOpen()) {
-            channel.close();
+        if (group != null) {
+            if (channel.isOpen()) {
+                channel.close();
+            }
+            group.shutdownGracefully();
         }
-        group.shutdownGracefully();
+        group = null;
+    }
+
+    public static DiserTransportCli connect(String diserURL) throws InterruptedException {
+        DiserUrl diserUrl = new DiserUrl(diserURL);
+        return connect(diserUrl.host(), diserUrl.port());
     }
 }

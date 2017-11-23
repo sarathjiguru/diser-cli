@@ -57,7 +57,6 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        //System.out.println(msg.toString());
         ctx.channel().close().addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future) {
