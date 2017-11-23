@@ -7,16 +7,20 @@ Diser Client. Both Native and REST client.
 
 ## clone diser and diser-cli
 git clone https://github.com/sarathjiguru/diser
+
 git clone http://github.com/sarathjiguru/diser-cli
 
 ## builid diser-cli
 cd diser-cli
+
 mvn clean package
+
 mvn install:install-file -Dfile=target/diser-cli-1.0-SNAPSHOT.jar -DgroupId=com.sarathjiguru -DartifactId=diser-cli -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 
 
 ## build diser
 cd ../diser
+
 mvn clean package
 
 
