@@ -33,7 +33,7 @@ java -jar target/diser-1.0-SNAPSHOT.jar -c src/test/resources/server-config.yml
 
 ### running 2 server another terminal
 
-java -jar target/diser-1.0-SNAPSHOT.jar -c src/test/resources/server-replicated-config.yml &
+java -jar target/diser-1.0-SNAPSHOT.jar -c src/test/resources/server-replicated-config.yml 
 
 ### running rest clients for servers
 
