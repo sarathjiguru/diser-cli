@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## Installation steps
+echo """Installation steps
 clone diser-cli
 clone diser
 
@@ -13,7 +13,7 @@ run dropwizard server
 
 test from server
 test from replicated server
-
+"""
 ## clone diser and diser-cli
 git clone https://github.com/sarathjiguru/diser
 
