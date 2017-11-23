@@ -1,4 +1,4 @@
-diser.store: "diserDB://127.0.0.1:8007/"
+diser.store: "diser://127.0.0.1:8007/"
 server:
   applicationConnectors:
     - type: http
