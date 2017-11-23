@@ -2,6 +2,7 @@ package com.sarathjiguru.transport;
 
 /**
  * Created by sarath on 15/11/17.
+ * Splits DiserUrl and sets host and port
  */
 public class DiserUrl {
     private final String host;

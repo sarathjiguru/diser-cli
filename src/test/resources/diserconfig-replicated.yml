@@ -1,0 +1,20 @@
+diser.store: "diser://127.0.0.1:7433/"
+server:
+  applicationConnectors:
+    - type: http
+      port: 7998
+  adminConnectors:
+    - type: http
+      port: 7999
+
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      currentLogFilename: /tmp/myapplication.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: /tmp/myapplication-%d.log
+      archivedFileCount: 5
+      timeZone: UTC
+      logFormat: "%d{yyyy-MM-dd HH:mm:ss.SSS} %thread %level %logger{36} - %msg%n"

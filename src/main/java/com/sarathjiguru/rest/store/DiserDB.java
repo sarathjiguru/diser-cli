@@ -3,6 +3,7 @@ package com.sarathjiguru.rest.store;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sarathjiguru.transport.DiserClient;
 import com.sarathjiguru.transport.DiserTransportCli;
+import com.sarathjiguru.transport.DiserUrl;
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.setup.Environment;
 
@@ -30,7 +31,7 @@ public class DiserDB {
     private final DiserTransportCli diserTCli;
 
     public DiserDB(String diserURL) throws InterruptedException {
-        this.diserTCli = DiserTransportCli.connect(diserURL);
+        this.diserTCli = new DiserTransportCli(new DiserUrl(diserURL));
     }
 
     public DiserTransportCli diserCli(){

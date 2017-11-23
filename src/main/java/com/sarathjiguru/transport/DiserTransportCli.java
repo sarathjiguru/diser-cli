@@ -13,29 +13,45 @@ import java.util.concurrent.ExecutionException;
  */
 public class DiserTransportCli {
     private static EventLoopGroup group;
-    private static Channel channel;
-    private static Bootstrap b;
+    private final int port;
+    private final String host;
+    private static Bootstrap b = new Bootstrap();
 
-    private static DiserTransportCli instance = null;
 
-    private DiserTransportCli() {
-
+    public DiserTransportCli(DiserUrl diserUrl) throws InterruptedException {
+        this(diserUrl.host(), diserUrl.port());
     }
 
+
+    public DiserTransportCli(String host, int port) throws InterruptedException {
+        this.host = host;
+        this.port = port;
+    }
+
+    /**
+     * Runs command and returns the message retrieved from server
+     *
+     * @param command
+     * @return
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
     public Object runCommand(String command) throws InterruptedException, ExecutionException {
+        ChannelFuture f = connect(host, port);
+        Channel channel = f.channel();
         channel.writeAndFlush(command + "\r\n");
         ChannelPipeline pipeline = channel.pipeline();
-        ClientHandler clientHandler = (ClientHandler) pipeline.last();
+        ClientHandler clientHandler = pipeline.get(ClientHandler.class);
         Object object = clientHandler.getObject();
         channel.close();
         channel.disconnect();
         return object;
     }
 
-    public static DiserTransportCli connect(String host, int port) throws InterruptedException {
+    private ChannelFuture connect(String host, int port) throws InterruptedException {
         if (group == null) {
-            group = new NioEventLoopGroup();
             b = new Bootstrap();
+            group = new NioEventLoopGroup();
             b.group(group)
                     .channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
@@ -49,24 +65,14 @@ public class DiserTransportCli {
                     });
         }
         // Start the client.
-        ChannelFuture f = b.connect(host, port).sync();
-        channel = f.channel();
-        return new DiserTransportCli();
+        return b.connect(host, port).sync();
     }
 
 
     public void disconnect() throws InterruptedException {
         if (group != null) {
-            if (channel.isOpen()) {
-                channel.close();
-            }
             group.shutdownGracefully();
         }
         group = null;
-    }
-
-    public static DiserTransportCli connect(String diserURL) throws InterruptedException {
-        DiserUrl diserUrl = new DiserUrl(diserURL);
-        return connect(diserUrl.host(), diserUrl.port());
     }
 }

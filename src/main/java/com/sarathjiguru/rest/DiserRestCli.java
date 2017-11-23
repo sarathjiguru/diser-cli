@@ -18,6 +18,9 @@ import java.util.SortedMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Rest Client Wrapper around Transport Client
+ */
 public class DiserRestCli extends Application<DiserRestCliConfig> {
 
     public static ExecutorService executor;
